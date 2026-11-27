@@ -852,3 +852,50 @@ The curl -s command is used to check if the website is working or not without sh
 The exit 1 command is used when the check fails. It tells the system that something went wrong and the command was not successful. This is useful for cron or other programs because they can check the exit code and know if the website is working or not.
 
 
+## Part 6, Task 4
+
+Commands:
+```
+crontab -e
+crontab -l
+tail ~/assignment/cron.log
+
+```
+
+The cron line added:
+
+```
+*/2 * * * * /home/ali/devops-assignment-1/scripts/site_check.sh >> /home/ali/assignment/cron.log 2>&1
+
+```
+
+Output of crontab -l:
+
+m h dom mon dow command
+*/2 * * * * /home/ali/devops-assignment-1/scripts/site_check.sh >> /home/ali/assignment/cron.log 2>&1
+
+
+Output of tail ~/assignment/cron.log:
+
+```
+2026-11-28 03:34:01 OK
+2026-11-28 03:36:01 OK
+2026-11-28 03:38:01 OK
+```
+
+Crontab time fields:
+(a) Every day at 14:30
+30 14 * * *
+
+(b) Every Monday to Friday at 06:00
+0 6 * * 1-5
+
+Explanation:
+
+Cron is used to run commands automatically after a specific time. It has five fields which are minute, hour, day, month and day of week. In this task */2 means the command will run after every 2 minutes without running it manually.
+
+The >> is used to add new output at the end of the log file without deleting the old data. The 2>&1 is used to save error messages in the same log file so we can check both normal output and errors in one place.
+
+We use complete file paths in cron because it does not always know where our files are located. By giving the full path it can easily find and run the correct file.
+
+
