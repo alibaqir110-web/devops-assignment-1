@@ -284,3 +284,45 @@ All packages are up to date.
 Explanation:
 Using sudo is safer because it gives admin permission only for the command we want to run. It also asks for our password before running the command and keeps a record of which command we used. After the command is completed we are back to our normal user. But if we stay logged in as root every command we type has full permission and even a small mistake can delete important system files. That's why using sudo is better because it reduces the chances of making big mistakes.
 
+## Part 3, Task 3
+
+Commands:
+
+```
+echo "Author: Ali Baqir" >> README.md
+git status
+git add README.md
+git status
+git commit -m "Part 3: add author to README"
+
+```
+
+Output:
+
+```
+On branch main
+Changes not staged for commit:
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified: README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+On branch main
+Changes to be committed:
+(use "git restore --staged <file>..." to unstage)
+modified: README.md
+
+[main fdd2794] Part 3: add author to README
+1 file changed, 1 insertion(+)
+
+```
+
+Explanation:
+After editing README.md the changes are in the working directory. Git knows that the file is changed but we have not added it for commit yet.
+
+After using git add the changes move to the staging area. It means we have selected the changes which we want to save in our next commit.
+
+After using git commit the changes are saved in the repository and become part of our project history. Now if we use git status it shows that there is nothing left to commit.
+
+
