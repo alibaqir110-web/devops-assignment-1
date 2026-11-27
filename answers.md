@@ -502,18 +502,19 @@ Hello from B
 >>>>>>> branch-b
 ```
 
+After resolving (cat greeting.txt):
 ```
-
-After resolving:
 Hello from A
 Hello from B
+```
 
+Commit, branch delete and push output:
+```
 [main 352aafc] Resolve conflict: keep both greetings
 Deleted branch branch-a (was 25845b9).
 Deleted branch branch-b (was 78c1cb6).
 To github.com:alibaqir110-web/devops-assignment-1.git
-5f3a3d2..352aafc main -> main
-
+   5f3a3d2..352aafc  main -> main
 ```
 
 Explanation:
@@ -569,6 +570,8 @@ GitHub automatically closes an issue when we use words like Closes #2 or Fixes #
 This is useful because sometimes we fix a problem but forget to close its issue. GitHub does it automatically when our changes are pushed to main. It also shows which commit fixed the issue so anyone can check it later.
 
 The documentation label is used to identify issues related to documentation. Labels help us separate different types of issues like bugs, documentation and new features so they are easier to find.
+
+Closed issue: https://github.com/alibaqir110-web/devops-assignment-1/issues/2
 
 ## Part 5, Task 1
 
@@ -783,7 +786,19 @@ echo "Backup saved: $DEST/linux-$TIMESTAMP.tar.gz"
 ```
 
 Commands:
+```
+cd ~/devops-assignment-1/scripts
+chmod +x backup_linux.sh
+./backup_linux.sh
+echo $?
+tar -tzf ~/assignment/backups/linux-2026-11-28-0317.tar.gz
+mv ~/assignment/linux ~/assignment/linux-old
+./backup_linux.sh
+echo $?
+mv ~/assignment/linux-old ~/assignment/linux
+```
 
+Output (normal run):
 ```
 Backup saved: /home/ali/assignment/backups/linux-2026-11-28-0317.tar.gz
 0
@@ -797,11 +812,10 @@ linux/run.sh
 ```
 
 Output (error case):
-
 ```
 Error: source folder /home/ali/assignment/linux does not exist
 1
-```
+````
 Explanation:
 
 The if [ ! -d "$SOURCE" ] checks if the source folder exists or not. If the folder does not exist then exit 1 stops the script and shows that it failed. The echo $? command shows the result of the last command where 0 means it was successful and 1 means it failed.
@@ -877,11 +891,10 @@ The cron line added:
 ```
 
 Output of crontab -l:
-
-m h dom mon dow command
+```
+# m h dom mon dow command
 */2 * * * * /home/ali/devops-assignment-1/scripts/site_check.sh >> /home/ali/assignment/cron.log 2>&1
-
-
+```
 Output of tail ~/assignment/cron.log:
 
 ```
