@@ -655,3 +655,60 @@ The export command sets a variable only for the current terminal. When we open a
 To make this variable permanent we can add export APP_ENV=staging in the ~/.bashrc file. This file runs whenever we open a new terminal so we don't have to set the variable again and again.
 
 
+## Part 5, Task 3
+
+Commands:
+```
+sudo systemctl enable --now ssh
+hostname -I
+whoami
+ssh-copy-id faraz@192.168.0.35
+ssh faraz@192.168.0.35
+whoami
+exit
+echo "Hello from Ali" > hello-from-ali.txt
+scp hello-from-ali.txt faraz@192.168.0.35:~/
+ssh faraz@192.168.0.35 "cat ~/.ssh/authorized_keys"
+
+```
+
+Output:
+```
+My machine:
+192.168.0.39
+ali
+
+Partner's machine (Faraz):
+192.168.0.35
+faraz
+
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ssh-add -L
+The authenticity of host '192.168.0.35 (192.168.0.35)' can't be established.
+ED25519 key fingerprint is: SHA256:BU3B+YLMOhCkAxBaZDSvd00fR6y4RhXvZtYhk0qu+t8
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+faraz@192.168.0.35's password:
+
+Number of key(s) added: 1
+
+Login with no password:
+faraz@faraz-HP-Pavilion-m7-Notebook-PC:~$ whoami
+faraz
+faraz@faraz-HP-Pavilion-m7-Notebook-PC:~$ exit
+logout
+Connection to 192.168.0.35 closed.
+
+File copy:
+hello-from-ali.txt 100% 15 0.7KB/s 00:00
+
+Partner's authorized_keys:
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL48lkEWEPaIhzM+fU1N/gZu2jxNt8b9MpNsu5WYIV/M alibaqir110@gmail.com
+
+```
+Explanation:
+
+The private key is `~/.ssh/id_ed25519` and the public key is `~/.ssh/id_ed25519.pub`. We should never share our private key with anyone because it is used to prove our identity. The public key can be shared with other machines because it is safe to share.
+
+Both keys are connected with each other. When we add our public key to another machine it allows us to log in using our private key. If someone gets our private key they can access all the machines and GitHub accounts where our public key is added and they can login as us.
+
+
