@@ -515,3 +515,12 @@ The `<<<<<<< HEAD` shows the changes that are already in our current branch (mai
 
 Git could not merge it automatically because both branches made different changes to the same line of the file. When changes are made to different lines Git can usually merge them automatically but when both branches change the same line it gets confused about which version to keep. That's why it stops and asks us to resolve the conflict manually.
 
+## Part 4, Task 3
+
+My pull request to my partner:
+https://github.com/MuhammadFarazAhmedd/devops-assignment-1/pull/1
+
+My partner's pull request to me:
+https://github.com/alibaqir110-web/devops-assignment-1/pull/1
+
+Partner's name: Muhammad Faraz Ahmed
