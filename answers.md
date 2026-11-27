@@ -524,3 +524,42 @@ My partner's pull request to me:
 https://github.com/alibaqir110-web/devops-assignment-1/pull/1
 
 Partner's name: Muhammad Faraz Ahmed
+
+## Part 4, Task 4
+
+Commands:
+
+```
+
+echo "Part 6: scripts are in scripts/ and run with cron." >> notes.md
+git commit -am "Add Part 6 notes. Closes #2"
+git push
+
+```
+
+Output:
+
+```
+
+[main 9b0b13e] Add Part 6 notes. Closes #2
+ 1 file changed, 1 insertion(+)
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 360 bytes | 360.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:alibaqir110-web/devops-assignment-1.git
+   9da5cf7..9b0b13e  main -> main
+
+```
+
+Explanation:
+
+GitHub automatically closes an issue when we use words like Closes #2 or Fixes #2 in our commit message. When we push that commit to the main branch GitHub checks the message and closes the related issue automatically. We don't have to go to the issue page and close it manually.
+
+This is useful because sometimes we fix a problem but forget to close its issue. GitHub does it automatically when our changes are pushed to main. It also shows which commit fixed the issue so anyone can check it later.
+
+The documentation label is used to identify issues related to documentation. Labels help us separate different types of issues like bugs, documentation and new features so they are easier to find.
+
