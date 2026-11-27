@@ -79,3 +79,16 @@ server.log,tmp/ and .env is not shown in git status because they match the patte
 
 Problem 1: The first problem that i identify is that the features that are made and added wait for three months to deploy in between multiple features are added and all get together and when they are released and gone live together the code breaks and nobody knows which new feature added has issues because multiple features are added together so root problem is not known .Dev Ops can fix problem like this by releasing new build every other day when new feature or bug fix is added and automation can be used so testing and releasing happens together and if there is issue in that feature it is pointed out easily and it can be easily fix 
 Problem 2: The second problem that i found is that there are two seperate teams of Dev & Ops .There is no accountability one team blames the other team for the issue and simillarly the second team does the same .Dev Ops Solve this problem by making a one team which work together from coding to running the code.if any issues comes they will work together and find the issue because they all are accountable and they cant specifically blame any one.
+
+### Question 2
+
+1. Plan - GitHub Issues
+2. Code - Git
+3. Build - GitHub Actions
+4. Test - pytest
+5. Release - Docker images
+6. Deploy - Kubernetes
+7. Operate - Ansible
+8. Monitor - Prometheus
+
+
