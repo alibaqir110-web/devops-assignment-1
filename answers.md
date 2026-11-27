@@ -618,3 +618,40 @@ The systemctl start command is used to start a service immediately but it will n
 ![Part 5 Task 1 - logs](screenshots/p5t1.png)
 
 
+## Part 5, Task 2
+
+Commands:
+```
+export APP_ENV=staging
+echo $APP_ENV
+printenv APP_ENV
+```
+
+
+Output:
+
+```
+staging
+staging
+```
+
+
+In a new terminal:
+
+```
+echo $APP_ENV
+printenv APP_ENV
+
+```
+
+Output:
+(both printed nothing, the variable did not exist)
+
+
+Explanation:
+
+The export command sets a variable only for the current terminal. When we open a new terminal it starts a new shell so the APP_ENV variable is not available there and it shows an empty output.
+
+To make this variable permanent we can add export APP_ENV=staging in the ~/.bashrc file. This file runs whenever we open a new terminal so we don't have to set the variable again and again.
+
+
