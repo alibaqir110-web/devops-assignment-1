@@ -1,3 +1,10 @@
+Name: Ali Baqir
+Roll number:65697
+Class Id:120823
+GitHub repo: https://github.com/alibaqir110-web/devops-assignment-1
+My PR to partner: https://github.com/MuhammadFarazAhmedd/devops-assignment-1/pull/1
+Partner's PR to me: https://github.com/alibaqir110-web/devops-assignment-1/pull/1
+Partner's name: Muhammad Faraz Ahmed
 # Answers - DevOps Assignment 1
 
 
