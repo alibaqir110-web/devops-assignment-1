@@ -326,3 +326,54 @@ After using git add the changes move to the staging area. It means we have selec
 After using git commit the changes are saved in the repository and become part of our project history. Now if we use git status it shows that there is nothing left to commit.
 
 
+## Part 3, Task 4
+
+Commands:
+
+```
+git remote add origin git@github.com:alibaqir110-web/devops-assignment-1.git
+git push -u origin main
+git remote -v
+git log --oneline
+```
+
+Output:
+
+```
+Enumerating objects: 35, done.
+Counting objects: 100% (35/35), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (31/31), done.
+Writing objects: 100% (35/35), 209.16 KiB | 754.00 KiB/s, done.
+Total 35 (delta 16), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (16/16), done.
+To github.com:alibaqir110-web/devops-assignment-1.git
+
+[new branch] main -> main
+branch 'main' set up to track 'origin/main'.
+
+origin git@github.com:alibaqir110-web/devops-assignment-1.git (fetch)
+origin git@github.com:alibaqir110-web/devops-assignment-1.git (push)
+
+b86ad5e (HEAD -> main, origin/main) Part 3: Task 3 answer
+fdd2794 Part 3: add author to README
+f9066e5 Part 2: Linux command line tasks
+00a0fbd Part 1: Question 4 answer
+502d1f0 Part 1: Question 3 answer
+e88b0ba Part 1: Question 2 answer
+98652eb Part 1: Question 1 answer
+5834caf Part 3: add Task 2 answer
+a77504a Part 3: add Task 1 answer
+d93c682 Part 3: add README, answers and .gitignore
+
+```
+
+Explanation:
+
+Origin is just a name given to our GitHub repository link. It connects our local project with GitHub so we dont have to write the full link every time we want to upload our code.
+
+The git push -u origin main command uploads our main branch and all its commits to GitHub. The -u is used so Git remembers the connection between our local main branch and GitHub main branch. Next time we can simply use git push to upload our changes. It also created a new main branch on GitHub because it was not already there.
+
+The git remote -v command shows the link of our GitHub repository. It shows fetch and push which are used for downloading and uploading changes. The git log --oneline command shows all our commits with their short IDs and messages. It showed 10 commits which means our work is saved in GitHub and both local and online branches are at the same point.
+
+
