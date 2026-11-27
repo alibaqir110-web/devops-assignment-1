@@ -669,6 +669,8 @@ To make this variable permanent we can add export APP_ENV=staging in the ~/.bash
 
 Commands:
 ```
+ls ~/.ssh
+ssh-keygen -l -f ~/.ssh/id_ed25519.pub
 sudo systemctl enable --now ssh
 hostname -I
 whoami
@@ -684,6 +686,8 @@ ssh faraz@192.168.0.35 "cat ~/.ssh/authorized_keys"
 
 Output:
 ```
+authorized_keys  id_ed25519  id_ed25519.pub  known_hosts  known_hosts.old
+256 SHA256:vrvPrvczy82DzF/Cr5L1AEQc/CnwXSvQPNeGNlMJYwE alibaqir110@gmail.com (ED25519)
 My machine:
 192.168.0.39
 ali
@@ -717,7 +721,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL48lkEWEPaIhzM+fU1N/gZu2jxNt8b9MpNsu5WYIV/M
 ```
 Explanation:
 
-The private key is `~/.ssh/id_ed25519` and the public key is `~/.ssh/id_ed25519.pub`. We should never share our private key with anyone because it is used to prove our identity. The public key can be shared with other machines because it is safe to share.
+I generated my key pair earlier with ssh-keygen -t ed25519 -C "alibaqir110@gmail.com" when setting up GitHub SSH, so I did not generate it again because that would overwrite my existing key.The private key is `~/.ssh/id_ed25519` and the public key is `~/.ssh/id_ed25519.pub`. We should never share our private key with anyone because it is used to prove our identity. The public key can be shared with other machines because it is safe to share.
 
 Both keys are connected with each other. When we add our public key to another machine it allows us to log in using our private key. If someone gets our private key they can access all the machines and GitHub accounts where our public key is added and they can login as us.
 
