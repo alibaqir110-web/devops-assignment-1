@@ -563,3 +563,58 @@ This is useful because sometimes we fix a problem but forget to close its issue.
 
 The documentation label is used to identify issues related to documentation. Labels help us separate different types of issues like bugs, documentation and new features so they are easier to find.
 
+## Part 5, Task 1
+
+Commands:
+
+```
+
+sudo apt update
+sudo apt install -y apache2
+systemctl status apache2
+sudo systemctl stop apache2
+systemctl status apache2
+curl localhost
+sudo systemctl start apache2
+sudo systemctl enable apache2
+systemctl is-enabled apache2
+sudo journalctl -u apache2 --since today
+
+```
+
+Output:
+```
+● apache2.service - The Apache HTTP Server
+Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; preset: enabled)
+Active: active (running) since Sat 2026-11-28 02:14:37 PKT; 13s ago
+Main PID: 70979 (apache2)
+
+(after stopping)
+○ apache2.service - The Apache HTTP Server
+Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; preset: enabled)
+Active: inactive (dead) since Sat 2026-11-28 02:19:50 PKT; 5s ago
+
+curl: (7) Failed to connect to localhost port 80 after 0 ms: Could not connect to server
+
+Synchronizing state of apache2.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable apache2
+enabled
+
+Nov 28 02:14:37 ali-ThinkPad-T450 systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Nov 28 02:14:37 ali-ThinkPad-T450 systemd[1]: Started apache2.service - The Apache HTTP Server.
+Nov 28 02:19:50 ali-ThinkPad-T450 systemd[1]: Stopping apache2.service - The Apache HTTP Server...
+Nov 28 02:19:50 ali-ThinkPad-T450 systemd[1]: apache2.service: Deactivated successfully.
+Nov 28 02:19:50 ali-ThinkPad-T450 systemd[1]: Stopped apache2.service - The Apache HTTP Server.
+Nov 28 02:22:16 ali-ThinkPad-T450 systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Nov 28 02:22:16 ali-ThinkPad-T450 systemd[1]: Started apache2.service - The Apache HTTP Server.
+
+```
+Explanation:
+
+The systemctl start command is used to start a service immediately but it will not start automatically if we restart our system. The systemctl enable command is used to make the service start automatically every time we turn on our system but it does not start it right now. That's why we use both commands so the service starts now and also runs automatically after restarting the system.
+
+
+![Part 5 Task 1 - service stopped](screenshots/p5t1-stopped.png)
+![Part 5 Task 1 - logs](screenshots/p5t1.png)
+
+
