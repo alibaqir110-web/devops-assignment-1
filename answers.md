@@ -124,3 +124,163 @@ A blameless review after an outage - this is Continual learning . after the syst
 
 Releasing small changes every day instead of one big release every quarter - this is Flow . the work keeps on moving towards production in small parts instead of piling up and waiting for three months .
 
+
+## Part 2, Task 1
+
+Commands:
+
+```
+mkdir -p ~/assignment/linux/data/reports ~/assignment/linux/data/archive
+ls -R ~/assignment/linux
+
+```
+Output:
+```
+/home/ali/assignment/linux:
+data
+
+/home/ali/assignment/linux/data:
+archive reports
+
+/home/ali/assignment/linux/data/archive:
+
+/home/ali/assignment/linux/data/reports:
+
+```
+
+Explanation:
+The mkdir -p command is used to create folders along with their parent folders if they do not already exist. In this command it created the assignment folder, then linux, data and reports and archive folders in one command. If any folder already exists it does not give an error and continues normally.
+
+The ls -R command is used to show all folders and files inside a directory including the folders inside other folders. It shows the complete folder structure and also shows what is inside each folder.
+
+## Part 2, Task 2
+
+Commands:
+
+```
+cd ~/assignment/linux
+touch report.txt run.sh
+chmod 640 report.txt
+chmod 754 run.sh
+ls -l
+
+```
+
+Output:
+
+```
+total 4
+drwxrwxr-x 4 ali ali 4096 Nov 27 23:29 data
+-rw-r----- 1 ali ali 0 Nov 27 23:30 report.txt
+-rwxr-xr-- 1 ali ali 0 Nov 27 23:30 run.sh
+
+```
+
+Explanation:
+For report.txt i used 640 permissions. The owner can read and write the file but group members can only read it and others have no permission to access it. I used these permissions because report.txt is just a text file and everyone 
+
+![Part 2 Task 2](screenshots/p2t2.png)
+
+## Part 2, Task 3
+
+Commands:
+
+```
+printf 'INFO start\nERROR disk full\nINFO user login\nWARN slow response\nERROR timeout\nINFO user logout\nERROR disk full\nINFO backup done\nWARN memory high\nERROR timeout\nINFO restart\nERROR disk full\n' > server.log
+grep ERROR server.log | wc -l
+grep WARN server.log | wc -l
+grep ERROR server.log | grep disk
+
+```
+Output:
+
+```
+5
+2
+ERROR disk full
+ERROR disk full
+ERROR disk full
+
+```
+
+Explanation:
+The grep command is used to search for a specific word in a file. In this case grep ERROR server.log shows all the lines which contains the word ERROR. It prints the complete line instead of only showing the word.
+
+The pipe (|) is used to pass the output of one command to another command. For example grep ERROR server.log | wc -l first finds all the ERROR lines and then passes them to wc -l instead of showing them on screen.
+
+The wc -l command counts the total number of lines. In this task it counted the ERROR lines and gave the result 5. Similarly when i searched for WARN it gave 2 lines.
+
+When we use two grep commands together like grep ERROR server.log | grep disk, the first grep finds all lines containing ERROR and the second grep searches for the word disk in those results. This way only the lines containing both ERROR and disk are shown. It works like applying one filter after another.
+
+
+## Part 2, Task 4
+
+Commands:
+
+```
+sleep 600 &
+ps
+kill 58342
+ps
+sleep 600 &
+ps
+kill -9 58360
+ps
+```
+
+Output:
+```
+[1] 58342
+PID TTY TIME CMD
+8696 pts/0 00:00:00 bash
+58342 pts/0 00:00:00 sleep
+58345 pts/0 00:00:00 ps
+[1]+ Terminated sleep 600
+PID TTY TIME CMD
+8696 pts/0 00:00:00 bash
+58354 pts/0 00:00:00 ps
+[1] 58360
+PID TTY TIME CMD
+8696 pts/0 00:00:00 bash
+58360 pts/0 00:00:00 sleep
+58362 pts/0 00:00:00 ps
+[1]+ Killed sleep 600
+PID TTY TIME CMD
+8696 pts/0 00:00:00 bash
+58374 pts/0 00:00:00 ps
+
+```
+Explanation:
+
+The normal kill command sends SIGTERM signal which asks the process to stop and gives it some time to save its data and close properly. While kill -9 sends SIGKILL signal which forcefully stops the process immediately without giving it time to save data or close properly.
+
+We should always try normal kill first because it allows the program to stop safely. We use kill -9 only when a program is stuck or not responding and does not stop with the normal kill command.
+
+![Part 2 Task 4](screenshots/p2t4.png)
+
+## Part 2, Task 5
+
+Commands:
+
+```
+whoami
+groups
+sudo apt update
+```
+
+Output:
+
+```
+ali
+ali adm cdrom sudo dip plugdev users lpadmin lxd
+Hit:1 http://archive.ubuntu.com/ubuntu resolute InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu resolute-updates InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu resolute-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu resolute-security InRelease
+All packages are up to date.
+
+```
+
+Explanation:
+Using sudo is safer because it gives admin permission only for the command we want to run. It also asks for our password before running the command and keeps a record of which command we used. After the command is completed we are back to our normal user. But if we stay logged in as root every command we type has full permission and even a small mistake can delete important system files. That's why using sudo is better because it reduces the chances of making big mistakes.
+
