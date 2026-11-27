@@ -712,3 +712,143 @@ The private key is `~/.ssh/id_ed25519` and the public key is `~/.ssh/id_ed25519.
 Both keys are connected with each other. When we add our public key to another machine it allows us to log in using our private key. If someone gets our private key they can access all the machines and GitHub accounts where our public key is added and they can login as us.
 
 
+## Part 6, Task 1
+
+Script (scripts/sys_report.sh):
+
+```
+
+#!/bin/bash
+HOST=$(hostname)
+TODAY=$(date +%Y-%m-%d)
+
+echo "Hostname: $HOST"
+echo "Date: $TODAY"
+echo "Current user: $(whoami)"
+echo "Disk usage of /:"
+df -h /
+```
+
+Commands:
+```
+
+chmod +x sys_report.sh
+./sys_report.sh
+
+```
+
+Output:
+
+```
+Hostname: ali-ThinkPad-T450
+Date: 2026-11-28
+Current user: ali
+Disk usage of /:
+Filesystem Size Used Avail Use% Mounted on
+/dev/sda7 18G 7.6G 8.7G 47% /
+
+```
+
+Explanation:
+
+The $(...) is used to run a command and store its output in a variable. In this task HOST stores the computer name and TODAY stores the current date in YYYY-MM-DD format.
+
+The chmod +x command gives execute permission to the file so we can run it like a program. The ./ is used to run the script from the current folder.
+
+
+## Part 6, Task 2
+
+Script (scripts/backup_linux.sh):
+```
+#!/bin/bash
+SOURCE="$HOME/assignment/linux"
+DEST="$HOME/assignment/backups"
+TIMESTAMP=$(date +%Y-%m-%d-%H%M)
+
+if [ ! -d "$SOURCE" ]; then
+echo "Error: source folder $SOURCE does not exist"
+exit 1
+fi
+
+mkdir -p "$DEST"
+tar -czf "$DEST/linux-$TIMESTAMP.tar.gz" -C "$HOME/assignment" linux
+echo "Backup saved: $DEST/linux-$TIMESTAMP.tar.gz"
+```
+
+Commands:
+
+```
+Backup saved: /home/ali/assignment/backups/linux-2026-11-28-0317.tar.gz
+0
+linux/
+linux/data/
+linux/data/reports/
+linux/data/archive/
+linux/report.txt
+linux/server.log
+linux/run.sh
+```
+
+Output (error case):
+
+```
+Error: source folder /home/ali/assignment/linux does not exist
+1
+```
+Explanation:
+
+The if [ ! -d "$SOURCE" ] checks if the source folder exists or not. If the folder does not exist then exit 1 stops the script and shows that it failed. The echo $? command shows the result of the last command where 0 means it was successful and 1 means it failed.
+
+The mkdir -p command creates the backups folder if it is not already there. The tar -czf command is used to create a compressed backup file and tar -tzf is used to see the files inside the backup without extracting them.
+
+
+## Part 6, Task 3
+
+Script (scripts/site_check.sh):
+```
+#!/bin/bash
+URL="http://localhost"
+CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+
+if [ "$CODE" = "200" ]; then
+echo "$(date '+%Y-%m-%d %H:%M:%S') OK"
+else
+echo "$(date '+%Y-%m-%d %H:%M:%S') FAIL: HTTP code $CODE"
+exit 1
+fi
+```
+
+
+Commands:
+```
+chmod +x site_check.sh
+sudo systemctl start apache2
+./site_check.sh
+echo $?
+sudo systemctl stop apache2
+./site_check.sh
+echo $?
+sudo systemctl start apache2
+```
+
+
+Output (apache2 running):
+```
+
+2026-11-28 03:22:36 OK
+0
+```
+
+Output (apache2 stopped):
+
+```
+2026-11-28 03:22:54 FAIL: HTTP code 000
+1
+```
+Explanation:
+
+The curl -s command is used to check if the website is working or not without showing extra details on the screen. The -o /dev/null is used to ignore the page content because we only want to check the status of the website. The -w "%{http_code}" shows only the HTTP status code of the website. If it shows 200 it means the website is working and responding properly. If it shows 000 it means curl could not connect to the server at all because the server was stopped.
+
+The exit 1 command is used when the check fails. It tells the system that something went wrong and the command was not successful. This is useful for cron or other programs because they can check the exit code and know if the website is working or not.
+
+
