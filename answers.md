@@ -175,9 +175,11 @@ drwxrwxr-x 4 ali ali 4096 Nov 27 23:29 data
 -rwxr-xr-- 1 ali ali 0 Nov 27 23:30 run.sh
 
 ```
-
 Explanation:
-For report.txt i used 640 permissions. The owner can read and write the file but group members can only read it and others have no permission to access it. I used these permissions because report.txt is just a text file and everyone 
+
+For report.txt i used 640 permissions. The owner can read and write the file but group members can only read it and others have no permission to access it. I used these permissions because report.txt is just a text file and everyone does not need to change it.
+
+For run.sh i used 754 permissions. The owner can read, write and execute the file. Group members can read and execute it but cannot change it. Others can only read the file but cannot execute it. I used these permissions because run.sh is a script which needs execute permission to run.
 
 ![Part 2 Task 2](screenshots/p2t2.png)
 
@@ -399,38 +401,117 @@ git log --oneline --graph
 Output:
 
 ```
-
 Switched to a new branch 'add-notes'
 [add-notes 638aae7] Add notes.md
-1 file changed, 1 insertion(+)
-create mode 100644 notes.md
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notes.md
 [add-notes 784bc6c] Edit notes.md
-1 file changed, 1 insertion(+)
+ 1 file changed, 1 insertion(+)
 Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 Updating 5f3a3d2..784bc6c
 Fast-forward
-notes.md | 2 ++
-1 file changed, 2 insertions(+)
-create mode 100644 notes.md
+ notes.md | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 notes.md
 Deleted branch add-notes (was 784bc6c).
-
-784bc6c (HEAD -> main) Edit notes.md
-638aae7 Add notes.md
-5f3a3d2 (origin/main) Part 3: Task 4 answer
-b86ad5e Part 3: Task 3 answer
-fdd2794 Part 3: add author to README
-f9066e5 Part 2: Linux command line tasks
-00a0fbd Part 1: Question 4 answer
-502d1f0 Part 1: Question 3 answer
-e88b0ba Part 1: Question 2 answer
-98652eb Part 1: Question 1 answer
-5834caf Part 3: add Task 2 answer
-a77504a Part 3: add Task 1 answer
-d93c682 Part 3: add README, answers and .gitignore
+* 784bc6c (HEAD -> main) Edit notes.md
+* 638aae7 Add notes.md
+* 5f3a3d2 (origin/main) Part 3: Task 4 answer
+* b86ad5e Part 3: Task 3 answer
+* fdd2794 Part 3: add author to README
+* f9066e5 Part 2: Linux command line tasks
+* 00a0fbd Part 1: Question 4 answer
+* 502d1f0 Part 1: Question 3 answer
+* e88b0ba Part 1: Question 2 answer
+* 98652eb Part 1: Question 1 answer
+* 5834caf Part 3: add Task 2 answer
+* a77504a Part 3: add Task 1 answer
+* d93c682 Part 3: add README, answers and .gitignore
 
 ```
+
 Explanation:
 
 Yes it was a fast-forward merge because no one made any new commits in the main branch while we were working on the add-notes branch. We made two commits in add-notes and then merged it into main. Git simply moved the main branch forward to the latest commit of add-notes because there were no separate changes in main to combine. That's why Git did not create an extra merge commit and the commit history shows a straight line instead of two branches joining together.
+
+## Part 4, Task 2
+
+Commands:
+
+```
+echo "Hello from main" > greeting.txt
+git add greeting.txt
+git commit -m "Add greeting.txt"
+git switch -c branch-a
+echo "Hello from A" > greeting.txt
+git commit -am "Branch A greeting"
+git switch main
+git switch -c branch-b
+echo "Hello from B" > greeting.txt
+git commit -am "Branch B greeting"
+git switch main
+git merge branch-a
+git merge branch-b
+cat greeting.txt
+nano greeting.txt
+cat greeting.txt
+git add greeting.txt
+git commit -m "Resolve conflict: keep both greetings"
+git branch -d branch-a branch-b
+git push
+
+```
+
+Output:
+
+```
+[main 7220e47] Add greeting.txt
+1 file changed, 1 insertion(+)
+create mode 100644 greeting.txt
+Switched to a new branch 'branch-a'
+[branch-a 25845b9] Branch A greeting
+1 file changed, 1 insertion(+), 1 deletion(-)
+Switched to branch 'main'
+Switched to a new branch 'branch-b'
+[branch-b 78c1cb6] Branch B greeting
+1 file changed, 1 insertion(+), 1 deletion(-)
+Switched to branch 'main'
+Updating 7220e47..25845b9
+Fast-forward
+greeting.txt | 2 +-
+1 file changed, 1 insertion(+), 1 deletion(-)
+Auto-merging greeting.txt
+CONFLICT (content): Merge conflict in greeting.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+The file with the conflict markers:
+```
+<<<<<<< HEAD
+Hello from A
+=======
+Hello from B
+>>>>>>> branch-b
+```
+
+```
+
+After resolving:
+Hello from A
+Hello from B
+
+[main 352aafc] Resolve conflict: keep both greetings
+Deleted branch branch-a (was 25845b9).
+Deleted branch branch-b (was 78c1cb6).
+To github.com:alibaqir110-web/devops-assignment-1.git
+5f3a3d2..352aafc main -> main
+
+```
+
+Explanation:
+
+The `<<<<<<< HEAD` shows the changes that are already in our current branch (main). The `=======` is used to separate the two versions and `>>>>>>> branch-b` shows the changes coming from branch-b.
+
+Git could not merge it automatically because both branches made different changes to the same line of the file. When changes are made to different lines Git can usually merge them automatically but when both branches change the same line it gets confused about which version to keep. That's why it stops and asks us to resolve the conflict manually.
 
