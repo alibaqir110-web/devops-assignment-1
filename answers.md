@@ -92,3 +92,16 @@ Problem 2: The second problem that i found is that there are two seperate teams 
 8. Monitor - Prometheus
 
 
+### Question 3
+
+Culture - Team members should check each others code and help each other if any mistake comes instead of blaming each other.
+
+Automation - We can make a small script which automatically take backup of our project files so we dont have to do it manually every time.
+
+Lean - We should make small commits after completing small work instead of adding all changes together at one time.
+
+Measurement - We can count how many pull requests are merged every week to check how much work our team has completed.
+
+Sharing - We can share useful tips and problems in our repository or GitHub issues so other team members can also learn from them.
+
+
