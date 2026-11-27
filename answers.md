@@ -105,3 +105,22 @@ Measurement - We can count how many pull requests are merged every week to check
 Sharing - We can share useful tips and problems in our repository or GitHub issues so other team members can also learn from them.
 
 
+### Question 4
+
+(a) There are four DORA metrics :
+
+Deployment frequency - it shows how many times we push our code to production in a given time . it is a Speed metric
+Lead time for changes - it is how long a change takes from the moment i commit it till it is actually running live . it is also a Speed metric
+Change failure rate - this shows what percentage of our deployments cause a problem and need a fix or rollback . it is a Stability metric
+Time to restore service - it is the time that teams takes to get system backup after the system gets down .it is a stability metric.
+
+The first two metrics are about speed and the last two are about stability .
+
+(b)
+
+An automated test that fails a push within minutes - it is called Feedback . the developer comes to know within few minutes that his code has broken something so he can correct it while the work is still fresh in his mind he remembers the changes.
+
+A blameless review after an outage - this is Continual learning . after the system goes down the team discusses what went wrong and nobody is blamed , so everyone learns from it and the same mistake is avoided next time .
+
+Releasing small changes every day instead of one big release every quarter - this is Flow . the work keeps on moving towards production in small parts instead of piling up and waiting for three months .
+
