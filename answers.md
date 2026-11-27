@@ -377,3 +377,60 @@ The git push -u origin main command uploads our main branch and all its commits 
 The git remote -v command shows the link of our GitHub repository. It shows fetch and push which are used for downloading and uploading changes. The git log --oneline command shows all our commits with their short IDs and messages. It showed 10 commits which means our work is saved in GitHub and both local and online branches are at the same point.
 
 
+## Part 4, Task 1
+
+Commands:
+
+```
+
+git switch -c add-notes
+echo "# Notes" > notes.md
+git add notes.md
+git commit -m "Add notes.md"
+echo "Branches keep work separate until it is ready." >> notes.md
+git commit -am "Edit notes.md"
+git switch main
+git merge add-notes
+git branch -d add-notes
+git log --oneline --graph
+
+```
+
+Output:
+
+```
+
+Switched to a new branch 'add-notes'
+[add-notes 638aae7] Add notes.md
+1 file changed, 1 insertion(+)
+create mode 100644 notes.md
+[add-notes 784bc6c] Edit notes.md
+1 file changed, 1 insertion(+)
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Updating 5f3a3d2..784bc6c
+Fast-forward
+notes.md | 2 ++
+1 file changed, 2 insertions(+)
+create mode 100644 notes.md
+Deleted branch add-notes (was 784bc6c).
+
+784bc6c (HEAD -> main) Edit notes.md
+638aae7 Add notes.md
+5f3a3d2 (origin/main) Part 3: Task 4 answer
+b86ad5e Part 3: Task 3 answer
+fdd2794 Part 3: add author to README
+f9066e5 Part 2: Linux command line tasks
+00a0fbd Part 1: Question 4 answer
+502d1f0 Part 1: Question 3 answer
+e88b0ba Part 1: Question 2 answer
+98652eb Part 1: Question 1 answer
+5834caf Part 3: add Task 2 answer
+a77504a Part 3: add Task 1 answer
+d93c682 Part 3: add README, answers and .gitignore
+
+```
+Explanation:
+
+Yes it was a fast-forward merge because no one made any new commits in the main branch while we were working on the add-notes branch. We made two commits in add-notes and then merged it into main. Git simply moved the main branch forward to the latest commit of add-notes because there were no separate changes in main to combine. That's why Git did not create an extra merge commit and the commit history shows a straight line instead of two branches joining together.
+
